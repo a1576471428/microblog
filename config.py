@@ -11,5 +11,14 @@ OPENID_PROVIDERS = [
     { 'name': 'Flickr', 'url': 'http://www.flickr.com/<username>' },
     { 'name': 'MyOpenID', 'url': 'https://www.myopenid.com' }]
 
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:a1101301376@localhost:3306/microblog?charset=utf8'
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:***@localhost:3306/microblog?charset=utf8'
 SQLALCHEMY_TRACK_MODIFICATIONS = True
+
+# mail server settings
+MAIL_SERVER = 'localhost'
+MAIL_PORT = 25
+MAIL_USERNAME = None
+MAIL_PASSWORD = None
+
+# administrator list
+ADMINS = ['you@example.com']

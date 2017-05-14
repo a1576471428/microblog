@@ -1,6 +1,6 @@
-
 from hashlib import md5
 from app import db #db是在app/__init__.py生成的关联后的SQLAlchemy实例
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key = True)

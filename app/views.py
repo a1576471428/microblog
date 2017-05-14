@@ -86,7 +86,7 @@ def after_login(resp):
 # 为了决定用户是否已经登录。为了实现这个我们用 Flask 的
 # before_request 装饰器。任何使用了 before_request 装饰器的函数在接收请求之前都会运行。
 #  因此这就是我们设置我们 g.user 的地方:
-@app.before_request
+
 @app.before_request
 def before_request():
     #这就是所有需要做的。全局变量 current_user 是被 Flask-Login 设置的，
