@@ -14,6 +14,8 @@ OPENID_PROVIDERS = [
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:***@localhost:3306/microblog?charset=utf8'
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 
+
+'''
 # mail server settings
 MAIL_SERVER = 'localhost'
 MAIL_PORT = 25
@@ -22,3 +24,4 @@ MAIL_PASSWORD = None
 
 # administrator list
 ADMINS = ['you@example.com']
+'''

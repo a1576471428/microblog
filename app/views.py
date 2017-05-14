@@ -56,6 +56,7 @@ def login():
 #登陆后就会回调这个函数
 @oid.after_login
 def after_login(resp):
+
     if resp.email is None or resp.email == "": #登陆失败
         flash('Invalid login. Please try again.')
         return redirect(url_for('login'))
@@ -64,13 +65,14 @@ def after_login(resp):
     # 我们处理空的或者没有提供的 nickname 方式，因为一些 OpenID 提供商可能没有它的信息。
     print('login in : %s' % resp.nickname)
     user = User.query.filter_by(email=resp.email).first()
-    if user is None:
+    if user is None :
         nickname = resp.nickname
-        if nickname is None or nickname == "":
+        if nickname is None or nickname == "" :
             nickname = resp.email.split('@')[0]
-        user = User(nickname=nickname, email=resp.email)
+        nickname = User.make_unique_nickname(nickname) #自动+1来造新名字，直到没有重复的
+        user = User(nickname = nickname , email = resp.email)
         db.session.add(user)
-        db.session.commit() #添加新用户
+        db.session.commit()#添加新用户
     remember_me = False
     if 'remember_me' in session:
         #接着，我们从 flask 会话中加载 remember_me 值，这是一个布尔值，我们在登录视图函数中存储的。
@@ -133,7 +135,7 @@ def user(nickname):
 @app.route('/edit', methods=['GET', 'POST'])
 @login_required
 def edit():
-    form = EditForm()
+    form = EditForm(g.user.nickname)
     if form.validate_on_submit():
         g.user.nickname = form.nickname.data
         g.user.about_me = form.about_me.data
